@@ -7,7 +7,7 @@ from nextcord.ext import commands
 # Set environment vars
 _remote = True
 
-if Path(".\\env.py").is_file() or Path(".\\heroku\\src\\env.py").is_file():
+if Path(".\\src\\env.py").is_file():
     import env
 
     _remote = env.reg_environ()

@@ -19,7 +19,7 @@ def load_database(database: str):
 def load_cogs():
     """Loads every file in the defined folder"""
 
-    for file in Path(f"{SRC}\\heroku\\src\\cogs").glob("**/*.py"):
+    for file in Path(f"{SRC}\\src\\cogs").glob("**/*.py"):
 
         if file.is_file() and "_view.py" not in file.name:
             # format name
@@ -35,7 +35,7 @@ def load_cogs():
                     file.as_posix()
                     .replace(".py", "")
                     .replace("/", ".")
-                    .replace("heroku.src.cogs.", "")
+                    .replace("src.cogs.", "")
                 )
 
             try:

@@ -26,7 +26,7 @@ class OnMessageCog(commands.Cog):
 
         if in_message(["crying"]):
             await message.channel.send(
-                "*Your tears of anguish bring me life.*",
+                "**drinks tears*",
                 reference=message,
                 mention_author=False,
             )
