@@ -1,6 +1,6 @@
 {
-    "tag": [
-        [
+    "tag": {
+        "hashof(key.key.message)": [
             [
                 ""
             ],
@@ -8,9 +8,9 @@
                 ""
             ]
         ]
-    ],
-    "ntag": [
-        [
+    },
+    "ntag": {
+        "hashof(key.key.message)": [
             [
                 ""
             ],
@@ -18,5 +18,5 @@
                 ""
             ]
         ]
-    ]
+    }
 }
