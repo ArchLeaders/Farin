@@ -1,19 +1,20 @@
 import json
 
-from config import SRC, REMOTE, BOT
+from nextcord import Member
+from config import SRC, REMOTE, BOT, SERVER_ID
 from pathlib import Path
 
 
-def update_database(database: str, obj) -> None:
+def save_json(database: str, obj) -> None:
     """Serializes the defined JSON data file"""
 
-    Path(f"{SRC}/data/{database}.jsonc").write_text(json.dumps(obj, indent=4))
+    Path(f"{SRC}/data/{database}.json").write_text(json.dumps(obj, indent=4))
 
 
-def load_database(database: str):
+def load_json(database: str):
     """Deserializes the defined JSON data file and returns the object"""
 
-    return json.loads(Path(f"{SRC}/data/{database}.jsonc").read_text())
+    return json.loads(Path(f"{SRC}/data/{database}.json").read_text())
 
 
 def load_cogs():
@@ -47,3 +48,10 @@ def load_cogs():
             except Exception as ex:
                 print(ex)
                 pass
+
+
+def check(user: Member, roles: list) -> bool:
+    return any(
+        p_role in user.roles
+        for p_role in [BOT.get_guild(SERVER_ID).get_role(role) for role in roles]
+    )
