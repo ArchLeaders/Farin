@@ -15,28 +15,37 @@ class OnMessageCog(commands.Cog):
         if message.author == BOT.user:
             return
 
-        def in_message(words: list) -> bool:
+        def in_msg(words: list) -> bool:
             return any(word in message.content.lower() for word in words)
 
-        if in_message([f"<@{BOT.user.id}>"]):
+        if in_msg([f"<@{BOT.user.id}>"]):
+
+            if in_msg(["get in here", "I need you", "help"]):
+                await message.channel.send(
+                    f"What do you need of me <@{message.author.id}>? Someone need to be assassinated?"
+                )
+                return
+
             await message.channel.send(
                 "Hold on not yet! :sweat_smile:\nI'm still being worked on."
             )
             return
 
-        if in_message(["crying"]):
+        if in_msg(["crying"]):
             await message.channel.send(
-                "**drinks tears*",
+                "*\*drinks tears\**",
                 reference=message,
                 mention_author=False,
             )
             return
 
-        if in_message(["murder", "kill", "death"]):
+        if in_msg(["murder", "kill", "death", "blood", "dying"]):
             await message.channel.send(
-                "**interest peaks*", reference=message, mention_author=False
+                "*\*interest peaks\**", reference=message, mention_author=False
             )
             return
+
+        await BOT.process_commands(message)
 
 
 def setup(bot: commands.Bot):
