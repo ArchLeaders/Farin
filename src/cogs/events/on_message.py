@@ -7,8 +7,8 @@ from utils import load_json
 class OnMessageCog(commands.Cog):
     """Message responce commands"""
 
-    @BOT.event
-    async def on_message(message: Message) -> None:
+    @commands.Cog.listener()
+    async def on_message(self, message: Message) -> None:
 
         if message.author == BOT.user:
             return
@@ -33,8 +33,6 @@ class OnMessageCog(commands.Cog):
 
                 await message.channel.send(msg, reference=message, mention_author=False)
                 return
-
-        await BOT.process_commands(message)
 
 
 def setup(bot: commands.Bot):
