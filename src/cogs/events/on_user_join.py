@@ -3,7 +3,7 @@ from nextcord.ext import commands
 from config import BOT, CHANNEL_WELCOME, ROLE_MEMBER, SERVER_ID, CHANNEL_GENERAL
 
 
-class OnUserJoinCog(commands.Cog):
+class OnUserJoin(commands.Cog):
     """Message responce commands"""
 
     def __init__(self, bot: commands.Bot):
@@ -32,10 +32,9 @@ class OnUserJoinCog(commands.Cog):
         await channel.send(
             f"Hello <@{member.id}>, my name is Farin, your local sociopath and host in this server.\n"
             + "Take a moment to read the <#900439680514920468> and introduce yourself in <#900439925739106304> to prove yourself trustworthy.\n"
-            + "If you need anything, or if you've seen Alfonzo recently, let me know!\n\n"
-            + "_~Farin_"
+            + "If you need anything, or if you've seen Alfonzo recently, let me know!"
         )
 
 
 def setup(bot: commands.Bot):
-    bot.add_cog(OnUserJoinCog(bot))
+    bot.add_cog(OnUserJoin(bot))

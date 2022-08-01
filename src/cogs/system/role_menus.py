@@ -1,10 +1,10 @@
 from nextcord import Message, PartialEmoji, Reaction, TextChannel, Member
 from nextcord.ext import commands
 from config import ROLE_ADMIN, ROLE_MODERATOR, BOT
-from utils import check, load_json, save_json
+from utils import has_role, load_json, save_json
 
 
-class RoleMenuCog(commands.Cog):
+class RoleMenus(commands.Cog):
     """Commands for creating reaction based role-menus"""
 
     def __init__(self, bot: commands.Bot):
@@ -22,12 +22,7 @@ class RoleMenuCog(commands.Cog):
         """
 
         # Check roles
-        if not check(ctx.author, [ROLE_ADMIN, ROLE_MODERATOR]):
-            await ctx.send(
-                "I don't think you understand your position here...",
-                reference=ctx.message,
-                mention_author=False,
-            )
+        if not await has_role(ctx.author, [ROLE_ADMIN, ROLE_MODERATOR], ctx.message):
             return
 
         reactions = reaction_str.replace(" ", "").split("\n")
@@ -78,8 +73,8 @@ class RoleMenuCog(commands.Cog):
         if message_id in role_menus:
             if emoji.name in role_menus[message_id]:
                 role_id = role_menus[message_id][emoji.name]
-            elif emoji.id in role_menus[message_id]:
-                role_id = role_menus[message_id][emoji.id]
+            elif str(emoji.id) in role_menus[message_id]:
+                role_id = role_menus[message_id][str(emoji.id)]
             else:
                 return
 
@@ -101,8 +96,8 @@ class RoleMenuCog(commands.Cog):
         if str(message_id) in role_menus:
             if emoji.name in role_menus[message_id]:
                 role_id = role_menus[message_id][emoji.name]
-            elif emoji.id in role_menus[message_id]:
-                role_id = role_menus[message_id][emoji.id]
+            elif str(emoji.id) in role_menus[message_id]:
+                role_id = role_menus[message_id][str(emoji.id)]
             else:
                 return
 
@@ -110,4 +105,4 @@ class RoleMenuCog(commands.Cog):
 
 
 def setup(bot: commands.Bot):
-    bot.add_cog(RoleMenuCog(bot))
+    bot.add_cog(RoleMenus(bot))

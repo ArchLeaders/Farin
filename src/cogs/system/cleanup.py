@@ -1,9 +1,9 @@
 from nextcord.ext import commands
 from config import ROLE_ADMIN, ROLE_MODERATOR
-from utils import check
+from utils import has_role
 
 
-class CleanupCog(commands.Cog):
+class Cleanup(commands.Cog):
     """Various cleanup commands"""
 
     def __init__(self, bot: commands.Bot):
@@ -17,12 +17,7 @@ class CleanupCog(commands.Cog):
         """
 
         # Check roles
-        if not check(ctx.author, [ROLE_ADMIN, ROLE_MODERATOR]):
-            await ctx.send(
-                "I don't think you understand your position here...",
-                reference=ctx.message,
-                mention_author=False,
-            )
+        if not await has_role(ctx.author, [ROLE_ADMIN, ROLE_MODERATOR], ctx.message):
             return
 
         try:
@@ -46,4 +41,4 @@ class CleanupCog(commands.Cog):
 
 
 def setup(bot: commands.Bot):
-    bot.add_cog(CleanupCog(bot))
+    bot.add_cog(Cleanup(bot))

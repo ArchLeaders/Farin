@@ -4,7 +4,7 @@ from utils import load_json
 from nextcord.ext import commands
 
 
-class CensorCog(commands.Cog):
+class Censoring(commands.Cog):
     """Handles and censors content posted by users"""
 
     def __init__(self, bot: commands.Bot):
@@ -52,4 +52,4 @@ class CensorCog(commands.Cog):
 
 
 def setup(bot: commands.Bot):
-    bot.add_cog(CensorCog(bot))
+    bot.add_cog(Censoring(bot))

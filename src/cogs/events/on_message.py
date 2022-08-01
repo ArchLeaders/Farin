@@ -4,7 +4,7 @@ from nextcord.ext import commands
 from utils import load_json
 
 
-class OnMessageCog(commands.Cog):
+class OnMessage(commands.Cog):
     """Message responce commands"""
 
     @commands.Cog.listener()
@@ -36,4 +36,4 @@ class OnMessageCog(commands.Cog):
 
 
 def setup(bot: commands.Bot):
-    bot.add_cog(OnMessageCog(bot))
+    bot.add_cog(OnMessage(bot))
