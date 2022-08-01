@@ -36,7 +36,7 @@ class CensorCog(commands.Cog):
 
         if censor == True:
             await message.channel.send(
-                "*Please, we mustn't speak such language before master Benji*",
+                "*Do be silent, we mustn't speak such language before master Benji*",
                 reference=message,
                 mention_author=False,
             )
