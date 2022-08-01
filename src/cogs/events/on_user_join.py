@@ -21,13 +21,20 @@ class OnUserJoinCog(commands.Cog):
 
         if member.name.lower() == "boyo":
             await channel.send(f"Oh <@{member.id}>, oh boy... what do we have here?")
+            return
+
+        if member.name == "Shooting Star ♡•":
+            await channel.send(
+                f"Ah <@{member.id}>! Welcome fellow associate to my server (Emerald is just an employee). I'm confident we will be the best of collegues with many deeds of arson to come. :malicious_intent:"
+            )
+            return
 
         await channel.send(
             f"Hello <@{member.id}>, my name is Farin, your local sociopath and host in this server.\n"
-            + "If you need anything, or if you've seen Alfonzo recently, let me know!\n_~Farin_"
+            + "Take a moment to read the <#900439680514920468> and introduce yourself in <#900439925739106304> to prove yourself trustworthy.\n"
+            + "If you need anything, or if you've seen Alfonzo recently, let me know!\n\n"
+            + "_~Farin_"
         )
-
-        await member.add_roles(BOT.get_guild(SERVER_ID).get_role(ROLE_MEMBER))
 
 
 def setup(bot: commands.Bot):
