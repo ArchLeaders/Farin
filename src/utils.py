@@ -1,6 +1,6 @@
 import json
 
-from nextcord import Member
+from nextcord import Member, Embed, Message
 from config import SRC, REMOTE, BOT, SERVER_ID
 from pathlib import Path
 
@@ -54,4 +54,20 @@ def check(user: Member, roles: list) -> bool:
     return any(
         p_role in user.roles
         for p_role in [BOT.get_guild(SERVER_ID).get_role(role) for role in roles]
+    )
+
+
+async def add_responce(embed: Embed, message: Message):
+
+    json_data: dict = load_json("farin")
+    json_data[embed.footer.text[0:10].replace("\u2002", "")][
+        embed.footer.text[10 : len(embed.footer.text)]
+    ] = [
+        [key.lower() for key in embed.fields[0].value.split(", ")],
+        [embed.description],
+    ]
+
+    save_json("farin", json_data)
+    await message.channel.send(
+        f"_Your wish is my command, master Benji_", reference=message
     )
