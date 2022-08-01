@@ -1,22 +1,39 @@
 {
-  "Farin": {
-    "Farin1": [
-      [
-        ""
-      ],
-      [
-        ""
-      ]
-    ]
-  },
-  "Any": {
-    "Any1": [
-      [
-        ""
-      ],
-      [
-        ""
-      ]
-    ]
-  }
+    "Farin": {
+        "Farin1xQZru5XBoGR0sR/BSGa8uA==": [
+            [
+                "help",
+                "get in here",
+                "i need you"
+            ],
+            [
+                "What do you need of me @author? Someone need to be assassinated?"
+            ]
+        ]
+    },
+    "Any": {
+        "Any1xQZru5XBoGR0sR/BSGa8uA==": [
+            [
+                "crying"
+            ],
+            [
+                "*\\*drinks tears\\**"
+            ]
+        ],
+        "Any2xQZru5XBoGR0sR/BSGa8uA==": [
+            [
+                "death",
+                "dead",
+                "destruction",
+                "kill",
+                "dying",
+                "die",
+                "murder",
+                "blood"
+            ],
+            [
+                "*\\*interest peaks\\**"
+            ]
+        ]
+    }
 }
