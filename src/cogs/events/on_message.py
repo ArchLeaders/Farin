@@ -1,9 +1,7 @@
-from config import IMG_HELP, COLOR_HELP
-from typing import Optional, Set
+from config import BOT
 from nextcord import Message
 from nextcord.ext import commands
-
-from config import BOT
+from utils import load_json
 
 
 class OnMessageCog(commands.Cog):
@@ -15,35 +13,26 @@ class OnMessageCog(commands.Cog):
         if message.author == BOT.user:
             return
 
+        system_vars = {"@author": f"<@{message.author.id}>"}
+
         def in_msg(words: list) -> bool:
             return any(word in message.content.lower() for word in words)
 
+        farin = load_json("farin")
+        key = "Any"
+
         if in_msg([f"<@{BOT.user.id}>"]):
+            key = "Farin"
 
-            if in_msg(["get in here", "I need you", "help"]):
-                await message.channel.send(
-                    f"What do you need of me <@{message.author.id}>? Someone need to be assassinated?"
-                )
+        for _, words in farin[key].items():
+            if any(word in message.content.lower() for word in words[0]):
+
+                msg = words[1][0]
+                for _key, _value in system_vars.items():
+                    msg = msg.replace(_key, _value)
+
+                await message.channel.send(msg, reference=message, mention_author=False)
                 return
-
-            await message.channel.send(
-                "Hold on not yet! :sweat_smile:\nI'm still being worked on."
-            )
-            return
-
-        if in_msg(["crying"]):
-            await message.channel.send(
-                "*\*drinks tears\**",
-                reference=message,
-                mention_author=False,
-            )
-            return
-
-        if in_msg(["murder", "kill", "death", "blood", "dying"]):
-            await message.channel.send(
-                "*\*interest peaks\**", reference=message, mention_author=False
-            )
-            return
 
         await BOT.process_commands(message)
 
