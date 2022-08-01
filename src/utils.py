@@ -1,6 +1,6 @@
 import json
 
-from nextcord import Member, Embed, Message
+from nextcord import Member, Embed, Message, User
 from config import SRC, REMOTE, BOT, SERVER_ID
 from pathlib import Path
 
@@ -50,11 +50,20 @@ def load_cogs():
                 pass
 
 
-def check(user: Member, roles: list) -> bool:
-    return any(
+async def has_role(user: Member, roles: list, message: Message = None) -> bool:
+    has_role = any(
         p_role in user.roles
         for p_role in [BOT.get_guild(SERVER_ID).get_role(role) for role in roles]
     )
+
+    if not has_role and message:
+        await message.channel.send(
+            "I don't think you understand your position here...",
+            reference=message,
+            mention_author=False,
+        )
+
+    return has_role
 
 
 async def add_responce(embed: Embed, message: Message):
@@ -71,3 +80,7 @@ async def add_responce(embed: Embed, message: Message):
     await message.channel.send(
         f"_Your wish is my command, master Benji_", reference=message
     )
+
+
+async def strike(user: User, reason: str):
+    ...
