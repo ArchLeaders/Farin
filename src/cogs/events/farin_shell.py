@@ -1,10 +1,10 @@
-from ssl import CHANNEL_BINDING_TYPES
-from config import BOT
+from config import BOT, ROLE_ADMIN, ROLE_MODERATOR
 from nextcord import Message, TextChannel
 from nextcord.ext import commands
+from utils import has_role
 
 
-class FarinShellCog(commands.Cog):
+class FarinShell(commands.Cog):
     """Farin shell commands"""
 
     def __init__(self, bot: commands.Bot):
@@ -19,6 +19,10 @@ class FarinShellCog(commands.Cog):
 
         if message.channel.id == 1003417004742561912:
             if message.content.startswith(">goto"):
+
+                if not await has_role(message.author, [ROLE_ADMIN], message):
+                    return
+
                 channel_id = int(
                     message.content.split("#")[1].replace(">", "")
                     if "#" in message.content
@@ -35,4 +39,4 @@ class FarinShellCog(commands.Cog):
 
 
 def setup(bot: commands.Bot):
-    bot.add_cog(FarinShellCog(bot))
+    bot.add_cog(FarinShell(bot))
