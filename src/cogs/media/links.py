@@ -5,7 +5,7 @@ from nextcord.ext import commands
 
 
 class Links(commands.Cog):
-    """Handles and censors content posted by users"""
+    """Easily link urls to other users using simple predefined commands."""
 
     def __init__(self, bot: commands.Bot):
         self.bot = bot
