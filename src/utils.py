@@ -18,20 +18,12 @@ def load_json(database: str):
 
 
 def load_cogs():
-    """Loads every file in the defined folder"""
+    """Load cogs in the cog directory"""
 
-    for file in Path(f"{SRC}\\src\\cogs").glob("**/*.py"):
-
-        if file.is_file() and "_view.py" not in file.name:
-            # format name
-            if REMOTE:
-                name = (
-                    file.as_posix()
-                    .replace(".py", "")
-                    .replace("/app/heroku/src/cogs/", "")
-                    .replace("/", ".")
-                )
-            else:
+    for file in Path(f"{SRC}/src/cogs").glob("**/*.py"):
+        try:
+            if file.is_file() and "_view.py" not in file.name:
+                # format name
                 name = (
                     file.as_posix()
                     .replace(".py", "")
@@ -39,15 +31,14 @@ def load_cogs():
                     .replace("src.cogs.", "")
                 )
 
-            try:
                 # load cog
                 BOT.load_extension(f"cogs.{name}")
 
                 # log success
-                print(f"Loaded COG: {name}")
-            except Exception as ex:
-                print(ex)
-                pass
+                print(f"Loaded: cogs.{name}")
+        except Exception as ex:
+            print(f"Failed to load {file} as cog.\n{ex}")
+            pass
 
 
 async def has_role(user: Member, roles: list, message: Message = None) -> bool:
