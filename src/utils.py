@@ -37,7 +37,7 @@ def load_cogs():
                 # log success
                 print(f"Loaded: cogs.{name}")
         except Exception as ex:
-            print(f"Failed to load {file} as cog.\n{ex}")
+            print(f"Failed to load {file} with name {name} as cog.\n{ex}")
             pass
 
 
