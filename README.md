@@ -1,3 +1,3 @@
 # Farin
 
-A discord bot made for a discord server... Farin is great btw
+I'm a sociopath Discord bot made for [Emerald Creates'](https://instagram.com/emerald.creates) Discord server [**Emeraldville**](https://discord.gg/vpChgAtavY).
