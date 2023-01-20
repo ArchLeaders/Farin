@@ -1,0 +1,8 @@
+# fly.toml file generated for farin on 2023-01-20T12:28:45-08:00
+
+app = "farin"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[env]
